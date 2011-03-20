@@ -67,11 +67,25 @@ namespace ExpediaTest
                 LastCall.Return(Loc150);
             }
 
-            var target = new Car(10);
+            var target = ObjectMother.BMW();
             target.Database = mockDatabase;
 
             Assert.AreEqual(Loc10, target.getCarLocation(10));
             Assert.AreEqual(Loc150, target.getCarLocation(150));
+        }
+
+        [Test()]
+        public void TestThatTheCarCanCorrectlyTrackHowManyMilesItHasBeenDrivenSinceItWasCreatedInSomeRandomFactoryInDetroitOrChinaIfItIsAJapaneseCarBecauseDetroitIsPrettyMuchDead()
+        {
+            IDatabase mockDatabase = mocks.Stub<IDatabase>();
+            mockDatabase.Miles = 100;
+
+            var target = ObjectMother.BMW();
+            target.Database = mockDatabase;
+
+            int mileage = target.Mileage;
+            Assert.AreEqual(mileage, 100);
+
         }
 	}
 }
